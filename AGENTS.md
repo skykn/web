@@ -32,3 +32,10 @@
 - 可复用独立 helper 优先放置到`/src/toolkit/`中，并编写独立单元测试
 - 较为复杂的 UI 组件或页面需编写对应 E2E 测试
 - 如果需要添加测试用或展示效果的 Markdown/MDX 页面，优先复用现有文件
+
+## 部署与环境注意事项
+
+- **本机 D: 盘为 exFAT**：`pnpm-workspace.yaml` 已设 `nodeLinker: hoisted`（symlink 会报 EISDIR）；`.npmrc` 同此目的。不要移除。
+- **cn-font-split 原生库**：本机直连 GitHub Releases 被限，安装期需设 `CN_FONT_SPLIT_GH_HOST=https://ghproxy.net` 或手动下载 DLL 到 `node_modules/cn-font-split/dist/`（Cloudflare/GitHub Actions 构建环境无需此步）。
+- **部署链路**：GitHub Actions `deploy.yml`（push main 触发）→ `wrangler pages deploy dist --project-name=skykn-blog`。Secrets：`CLOUDFLARE_API_TOKEN`、`CLOUDFLARE_ACCOUNT_ID`。
+- **主站域名**：`skykn.eu.cc`（astro.config.mjs 的 `site`）；`yicn.eu.cc` 为同站绑定域名。站点身份见 `src/theme.config.ts`。
