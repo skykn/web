@@ -52,7 +52,15 @@ const friendsJson = JSON.stringify(friendsSnippet, null, 2);
     </section>
     <section class="friend-section friend-links-section">
       <h3>友链列表</h3>
-      <FriendLinks links={friendLinks} />
+      {
+        friendLinks.length > 0 ? (
+          <FriendLinks links={friendLinks} />
+        ) : (
+          <p class="friend-empty">
+            这里还空着。想互换友链的话，按上面的规则加上本站，再通过评论区或侧栏的联系方式告诉我。
+          </p>
+        )
+      }
     </section>
     {
       friendsConfig?.comments && (
@@ -138,6 +146,16 @@ const friendsJson = JSON.stringify(friendsSnippet, null, 2);
   .friend-links-section h3 {
     margin: 0 0 0.75rem;
     color: var(--grey-7);
+  }
+
+  .friend-empty {
+    margin: 0;
+    padding: 1rem 1.1rem;
+    border-radius: 0.75rem;
+    border: 1px dashed var(--grey-3);
+    background: var(--grey-0);
+    color: var(--grey-6);
+    line-height: 1.7;
   }
 
   .friend-snippet p {

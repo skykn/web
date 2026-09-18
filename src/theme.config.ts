@@ -124,6 +124,12 @@ export default defineConfig({
     ],
     pageSize: 5,
   },
+  friends: {
+    title: "友链",
+    description: "常来常往的站点，位置一直留着。",
+    // 暂无友链：留空数组，页面会显示空态提示。后续按 friends-rules.md 的规则逐条添加。
+    links: [],
+  },
   footer: {
     since: 2026,
     // 隐藏底部的 "由 Astro 和 ShokaX 主题强力驱动" 致谢行
