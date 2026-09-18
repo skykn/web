@@ -169,6 +169,21 @@ export default defineConfig({
       },
     },
     plugins: [
+      {
+        // vite-plugin-solid 通过 vitefu 把 babel-preset-solid / solid-refresh /
+        // vite-plugin-solid 写进了 SSR、astro 环境的 resolve.noExternal。
+        // 它们都是纯 Node 构建期依赖，babel-preset-solid 还是 CJS（内部 require），
+        // 被 Vite 内联求值后 require 未定义 → 浏览时随机抛 "require is not defined"。
+        // Vite 的 shouldExternalize 先判 resolve.external 再判 noExternal，
+        // 因此在所有环境下强制外置即可（命中 external 便不再内联）。
+        name: "solid-build-deps-external",
+        configEnvironment(_name, config) {
+          config.resolve ??= {};
+          if (config.resolve.external === true) return;
+          const current = Array.isArray(config.resolve.external) ? config.resolve.external : [];
+          config.resolve.external = [...new Set([...current, "babel-preset-solid", "solid-refresh", "vite-plugin-solid"])];
+        },
+      },
       Font.vite({
         scanFiles: ["src/**/*.{tsx,ts,js,jsx,md,mdx,json,astro}"],
         css: {
