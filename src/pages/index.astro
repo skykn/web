@@ -61,6 +61,12 @@ publishedPosts.forEach((post) => {
 });
 
 // Transform categories for CategoryCards component
+// 顺序以 selectedCategories 配置为准（此前按 postCount 排序导致配置顺序不生效），数量作次级排序
+const selectedCategoryOrder = (name: string): number => {
+  const index = themeConfig.home?.selectedCategories?.findIndex((cat) => cat.name === name);
+  return index === undefined || index < 0 ? Number.MAX_SAFE_INTEGER : index;
+};
+
 const categories = Array.from(categoryMap.entries())
   .filter(([name, _]) =>
     themeConfig.home?.selectedCategories?.some((cat) => cat.name === name),
@@ -77,7 +83,10 @@ const categories = Array.from(categoryMap.entries())
       url: `/posts/${p.slug}/`,
     })),
   }))
-  .toSorted((a, b) => b.postCount - a.postCount);
+  .toSorted(
+    (a, b) =>
+      selectedCategoryOrder(a.name) - selectedCategoryOrder(b.name) || b.postCount - a.postCount,
+  );
 
 let pageTitle = themeConfig.home?.title?.customTitle ?? "";
 

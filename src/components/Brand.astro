@@ -179,10 +179,13 @@ function formatWordCount(count: number): string {
     background: linear-gradient(to left, transparent, var(--grey-4));
   }
 
+  /* 沉稳副标题：黑体字族（--font-sans 已含苹方/微软雅黑/思源黑体）+ 加粗 */
   .subtitle-text {
+    font-family: var(--font-sans);
     font-size: 1.125rem;
-    opacity: 0.85;
-    letter-spacing: 0.05em;
+    font-weight: 700;
+    opacity: 0.92;
+    letter-spacing: 0.08em;
   }
 
   @media (max-width: 768px) {

@@ -111,10 +111,11 @@ export default defineConfig({
   },
   home: {
     selectedCategories: [
+      // 顺序即首页"分类"卡片的展示顺序（2 列网格按行排布）
       { name: "资讯新闻" },
+      { name: "浮生札录" },
       { name: "技术载文" },
       { name: "作品陈列" },
-      { name: "浮生札录" },
     ],
     pageSize: 5,
   },

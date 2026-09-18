@@ -207,7 +207,7 @@ import HyacineOutlet from "@hyacine/plugin-astro/components/HyacineOutlet.astro"
         title={brandConfig.title}
       />
       <Brand
-        title={brandConfig.title}
+        title={indexPage ? "" : brandConfig.title}
         subtitle={brandConfig.subtitle}
         logo={brandConfig.logo}
         pageTitle={indexPage ? "" : pageTitle}

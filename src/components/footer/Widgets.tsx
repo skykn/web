@@ -176,9 +176,9 @@ function Widgets(props: WidgetsProps) {
   return (
     <aside class="widgets bg-body-bg-shadow px-4 flex gap-4 justify-around z-1">
       {props.enableRandomPosts !== false && randomPosts().length > 0 && (
-        <div class="rpost px-4 py-4 w-1/2">
+        <div class="rpost px-4 py-4 flex-1 min-w-0">
           <h2 class="text-base color-grey-5 font-semibold m-0 mb-4">{t("footer.randomPosts")}</h2>
-          <ul class="post-list m-0 p-0 list-none color-grey-5">
+          <ul class="post-list post-list--grid m-0 p-0 list-none color-grey-5">
             <For each={randomPosts()}>
               {(post) => (
                 <li class="item border-grey-4 pb-2 pl-8 border-b border-dashed relative">
@@ -201,7 +201,7 @@ function Widgets(props: WidgetsProps) {
       )}
 
       {props.enableRecentComments !== false && hasWaline() && (
-        <div class="rpost px-4 py-4 w-1/2">
+        <div class="rpost px-4 py-4 flex-1 min-w-0">
           <h2 class="text-base font-semibold m-0 mb-4">{t("footer.recentComments")}</h2>
           <ul id="recent-comment" class="post-list m-0 p-0 list-none">
             {recentComments().length > 0 ? (
