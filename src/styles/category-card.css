@@ -61,6 +61,7 @@
 }
 
 .cards .cover {
+  background-color: oklch(0.22 0.03 258);
   background-position: center;
   background-size: cover;
   background-image: linear-gradient(to bottom right, var(--color-pink), var(--color-orange));
@@ -80,8 +81,12 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: var(--cover-overlay-gradient);
-  opacity: 0.25;
+  /* 统一靛蓝黑遮罩：压暗任意封面图、收敛四张图明暗调性，并保证白色标题清晰 */
+  background-image: linear-gradient(
+    to bottom,
+    oklch(0.2 0.03 258 / 0.42) 0%,
+    oklch(0.16 0.03 258 / 0.64) 100%
+  );
   z-index: var(--z-base);
 }
 
@@ -91,6 +96,10 @@
   text-align: center;
   position: relative;
   z-index: var(--z-content);
+  font-size: 1.375rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-shadow: 0 0.125rem 0.625rem oklch(0 0 0 / 0.55);
 }
 
 .cards .cover span {

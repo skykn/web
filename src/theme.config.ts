@@ -109,6 +109,11 @@ export default defineConfig({
       url: "cover-3",
     },
   },
+  layout: {
+    rightSidebar: {
+      calendar: false,
+    },
+  },
   home: {
     selectedCategories: [
       // 顺序即首页"分类"卡片的展示顺序（2 列网格按行排布）

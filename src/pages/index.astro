@@ -1,9 +1,23 @@
----
+﻿---
 import Layout from "../layouts/Layout.astro";
 import IndexContent from "../components/IndexContent.astro";
 import Pagination from "../components/Pagination.astro";
 import { getCollection } from "astro:content";
 import themeConfig from "@/theme.config";
+
+// 首页四大板块卡片封面（统一靛蓝冷调，占位见 category-card.css 的渐变兜底色）
+import categoryNewsCover from "@/assets/images/categories/category-news.jpg";
+import categoryTechCover from "@/assets/images/categories/category-tech.jpg";
+import categoryWorksCover from "@/assets/images/categories/category-works.jpg";
+import categoryLifeCover from "@/assets/images/categories/category-life.jpg";
+import type { ImageMetadata } from "astro";
+
+const categoryCoverMap: Record<string, ImageMetadata> = {
+  资讯新闻: categoryNewsCover,
+  技术载文: categoryTechCover,
+  作品陈列: categoryWorksCover,
+  浮生札录: categoryLifeCover,
+};
 
 // Fetch all posts
 const allPosts = await getCollection("posts");
@@ -73,9 +87,10 @@ const categories = Array.from(categoryMap.entries())
   )
   .map(([name, data]) => ({
     name,
-    cover: themeConfig.home?.selectedCategories?.find(
-      (cat) => cat.name === name,
-    )?.cover,
+    // theme.config 显式配置优先，否则使用内置的四大板块封面
+    cover:
+      themeConfig.home?.selectedCategories?.find((cat) => cat.name === name)?.cover ??
+      categoryCoverMap[name]?.src,
     url: `/categories/${name}/`,
     postCount: data.posts.length,
     posts: data.posts.slice(0, 6).map((p) => ({
