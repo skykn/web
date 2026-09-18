@@ -84,6 +84,12 @@ export default defineConfig({
     author: "skykn",
     description: "记录技术、生活与思考。",
   },
+  cover: {
+    fixedCover: {
+      // 海岸日落航拍图（cover-4 为樱花图）
+      url: "cover-3",
+    },
+  },
   home: {
     selectedCategories: [
       { name: "资讯新闻" },
