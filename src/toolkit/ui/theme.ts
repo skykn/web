@@ -15,8 +15,9 @@ function getStoredTheme(win: Window): ThemeMode | null {
   return null;
 }
 
-function getPreferredTheme(win: Window): ThemeMode {
-  return win.matchMedia?.("(prefers-color-scheme: dark)")?.matches ? "dark" : "light";
+function getPreferredTheme(): ThemeMode {
+  // 深色主题为站点默认（产品需求）：不跟随系统偏好；用户仍可手动切换并持久化
+  return "dark";
 }
 
 export function applyTheme(doc: Document, theme: ThemeMode) {
@@ -24,7 +25,7 @@ export function applyTheme(doc: Document, theme: ThemeMode) {
 }
 
 export function initTheme(doc: Document, win: Window): ThemeMode {
-  const theme = getStoredTheme(win) ?? getPreferredTheme(win);
+  const theme = getStoredTheme(win) ?? getPreferredTheme();
   applyTheme(doc, theme);
   return theme;
 }
