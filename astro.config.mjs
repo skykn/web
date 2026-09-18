@@ -181,7 +181,9 @@ export default defineConfig({
           config.resolve ??= {};
           if (config.resolve.external === true) return;
           const current = Array.isArray(config.resolve.external) ? config.resolve.external : [];
-          config.resolve.external = [...new Set([...current, "babel-preset-solid", "solid-refresh", "vite-plugin-solid"])];
+          config.resolve.external = [
+            ...new Set([...current, "babel-preset-solid", "solid-refresh", "vite-plugin-solid"]),
+          ];
         },
       },
       Font.vite({

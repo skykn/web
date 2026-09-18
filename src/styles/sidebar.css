@@ -421,6 +421,8 @@
   display: inline-flex;
   width: 1.875rem;
   height: 1.875rem;
+  /* 社交图标间距（Telegram / Discord / Email 等） */
+  margin: 0 0.5rem 0.5rem;
   line-height: 1.875rem;
   text-align: center;
   position: relative;

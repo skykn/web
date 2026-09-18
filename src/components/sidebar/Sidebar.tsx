@@ -21,6 +21,7 @@ import type {
 } from "./SidebarTypes";
 import { encryptedTocStore } from "@/stores/encryptedTocStore";
 import { sidebarOpen } from "@/stores/sidebarSignal";
+import { filterCategoryNavLinks } from "@/toolkit/ui/sidebar";
 
 interface SidebarProps {
   config?: SidebarConfig;
@@ -60,7 +61,8 @@ function Sidebar(props: SidebarProps) {
 
   // 最终使用的 TOC：优先使用解密后的 TOC，否则使用静态 TOC
   const effectiveToc = createMemo(() => (decryptedToc().length > 0 ? decryptedToc() : toc()));
-  const menuSource = () => props.navLinks ?? [];
+  // 侧栏菜单不展示具体栏目链接（/categories/<栏目名>/），顶部导航栏仍保留
+  const menuSource = () => filterCategoryNavLinks(props.navLinks ?? []);
 
   // 确定可用面板
   const panels = createMemo<PanelConfig[]>(() => {

@@ -83,6 +83,25 @@ export default defineConfig({
   sidebar: {
     author: "skykn",
     description: "记录技术、生活与思考。",
+    // 社交图标：键名自定义，icon 用 Remix Icon（i-ri-*）。
+    // uno.config.ts 会自动收集此处图标进 safelist，无需手动维护。
+    social: {
+      telegram: {
+        url: "https://t.me/ykncn",
+        icon: "i-ri-telegram-fill",
+        color: "var(--color-blue)",
+      },
+      discord: {
+        url: "https://discord.com/users/1540000777257353328",
+        icon: "i-ri-discord-fill",
+        color: "var(--color-purple)",
+      },
+      email: {
+        url: "mailto:ykncn@msn.com",
+        icon: "i-ri-mail-line",
+        color: "var(--color-aqua)",
+      },
+    },
   },
   cover: {
     fixedCover: {
@@ -101,6 +120,8 @@ export default defineConfig({
   },
   footer: {
     since: 2026,
+    // 隐藏底部的 "由 Astro 和 ShokaX 主题强力驱动" 致谢行
+    powered: false,
     icp: {
       enable: false,
       icpnumber: "",
