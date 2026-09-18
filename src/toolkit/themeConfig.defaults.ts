@@ -58,7 +58,7 @@ export const DEFAULT_THEME_CONFIG: ShokaXThemeConfig = {
   brand: {
     title: "ShokaX",
     subtitle: "A modern blog theme",
-    logo: "✨",
+    logo: "",
   },
   cover: {
     enable: true,

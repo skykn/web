@@ -66,10 +66,10 @@ function formatWordCount(count: number): string {
 
     {
       shouldShowSubtitle && (
-        <p class="text-2xl color-grey-0 m-0 mt-2.5 flex gap-2.5">
-          <span class="flex items-center">=</span>
-          <span>{subtitle}</span>
-          <span class="flex items-center">=</span>
+        <p class="subtitle m-0 mt-3 flex items-center justify-center gap-3 color-grey-0">
+          <span class="subtitle-line subtitle-line--left" />
+          <span class="subtitle-text tracking-wide">{subtitle}</span>
+          <span class="subtitle-line subtitle-line--right" />
         </p>
       )
     }
@@ -167,6 +167,24 @@ function formatWordCount(count: number): string {
     }
   }
 
+  /* 沉稳副标题：两侧细渐隐线替代原“= =”包裹 */
+  .subtitle-line {
+    display: inline-block;
+    width: 2rem;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--grey-4));
+  }
+
+  .subtitle-line--right {
+    background: linear-gradient(to left, transparent, var(--grey-4));
+  }
+
+  .subtitle-text {
+    font-size: 1.125rem;
+    opacity: 0.85;
+    letter-spacing: 0.05em;
+  }
+
   @media (max-width: 768px) {
     #brand {
       padding-left: 0.5rem;
@@ -176,6 +194,10 @@ function formatWordCount(count: number): string {
 
     #brand h1 {
       font-size: 1.875rem;
+    }
+
+    .subtitle-line {
+      width: 1.25rem;
     }
   }
 

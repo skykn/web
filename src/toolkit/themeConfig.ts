@@ -22,7 +22,7 @@ interface BrandConfig {
   /**
    * Logo 符号。
    * - 显示在标题左侧
-   * - 推荐使用 emoji（如 "✨"）或短文本
+   * - 推荐使用文字标或线性图标（如 remix icon），保持成熟稳重的视觉调性
    * - 也可填写图片路径
    */
   logo?: string;

@@ -6,7 +6,7 @@ export default defineConfig({
   brand: {
     title: "skykn blog",
     subtitle: "skykn 的个人博客",
-    logo: "✨",
+    logo: "",
   },
   nav: [
     {

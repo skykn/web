@@ -21,12 +21,13 @@
   --grey-9-a6: oklch(0 0 0 / 0.6);
   --grey-2-a0: oklch(0.975 0 0 / 0);
 
-  --color-pink-light: oklch(0.946 0.06 338.1 / 0.72);
-  --color-cyan-light: oklch(0.972 0.038 169.1 / 0.72);
+  /* 装饰色收敛为沉稳蓝紫/蓝调，替代原粉橙活泼配色（与 --primary-color 靛蓝呼应） */
+  --color-pink-light: oklch(0.86 0.05 282 / 0.6);
+  --color-cyan-light: oklch(0.88 0.045 232 / 0.6);
 
   --color-red: oklch(0.579 0.24 22.2);
-  --color-pink: oklch(0.709 0.168 351.2);
-  --color-orange: oklch(0.721 0.176 42.4);
+  --color-pink: oklch(0.62 0.13 282);
+  --color-orange: oklch(0.62 0.11 232);
   --color-yellow: oklch(0.791 0.182 91.8);
   --color-green: oklch(0.517 0.178 143.2);
   --color-aqua: oklch(0.638 0.1 197.2);
@@ -36,10 +37,10 @@
 
   --color-red-a1: oklch(0.646 0.2 22 / 0.1);
   --color-red-a3: oklch(0.646 0.2 22 / 0.3);
-  --color-pink-a3: oklch(0.709 0.168 351.2 / 0.3);
-  --color-pink-light-a3: oklch(0.946 0.06 338.1 / 0.3);
-  --color-pink-light-a5: oklch(0.946 0.06 338.1 / 0.5);
-  --color-pink-light-a7: oklch(0.946 0.06 338.1 / 0.7);
+  --color-pink-a3: oklch(0.62 0.13 282 / 0.3);
+  --color-pink-light-a3: oklch(0.86 0.05 282 / 0.3);
+  --color-pink-light-a5: oklch(0.86 0.05 282 / 0.5);
+  --color-pink-light-a7: oklch(0.86 0.05 282 / 0.7);
 
   --body-bg-shadow: var(--grey-2);
   --box-bg-shadow: var(--grey-9-a1);
@@ -48,7 +49,8 @@
   --text-color-subtle: var(--grey-4);
   --header-text-color: var(--grey-0);
   --border-color-muted: var(--grey-4);
-  --primary-color: var(--color-red);
+  /* 沉稳强调色：低饱和靛蓝（indigo），替代原纯红，契合成熟稳重调性 */
+  --primary-color: oklch(0.53 0.12 258);
   --surface-code: var(--grey-3);
   --surface-code-header: var(--grey-2);
   --surface-inline-code: oklch(0.965 0.008 15);
@@ -127,8 +129,11 @@
   --search-input-inset: inset 0 1px 0 oklch(1 0 0 / 0.3);
   --search-result-shadow: 0 0.75rem 1.5rem oklch(0.183 0.008 243.1 / 0.05);
   --search-result-shadow-hover: 0 1rem 2rem oklch(0.183 0.008 243.1 / 0.09);
-  --search-accent-shadow: 0 0.75rem 1.5rem oklch(0.593 0.209 13.9 / 0.12);
-  --search-accent-shadow-soft: 0 1rem 2rem oklch(0.593 0.209 13.9 / 0.08);
+  /* 搜索强调阴影统一引用沉稳强调色，替代原红色 */
+  --search-accent-shadow: 0 0.75rem 1.5rem
+    color-mix(in oklch, var(--primary-color) 32%, transparent);
+  --search-accent-shadow-soft: 0 1rem 2rem
+    color-mix(in oklch, var(--primary-color) 22%, transparent);
 
   --line-hover-bg: oklch(0 0 0 / 0.06);
   --cb-line-highlight-bg: oklch(0.93 0.131 60 / 0.14);
@@ -146,7 +151,8 @@
   --cb-warning-border: oklch(0.77 0.17 35 / 0.85);
   --cb-highlighted-word-bg: oklch(0.93 0.131 60 / 0.25);
 
-  --nav-bg: linear-gradient(-225deg, var(--color-cyan-light) 0%, var(--color-pink-light) 100%);
+  /* 导航栏底色：浅色磨砂玻璃（半透明），替代原青粉渐变 */
+  --nav-bg: color-mix(in oklch, var(--grey-0) 70%, transparent);
 }
 
 .primary {
@@ -206,12 +212,12 @@
   --grey-9-a6: oklch(0.321 0 0 / 0.6);
   --grey-2-a0: oklch(0.361 0 0 / 0);
 
-  --color-pink-light: oklch(0.313 0.011 347.9);
-  --color-cyan-light: oklch(0.321 0.006 174.8);
+  --color-pink-light: oklch(0.34 0.03 282);
+  --color-cyan-light: oklch(0.34 0.02 232);
 
   --color-red: oklch(0.616 0.175 21.6);
-  --color-pink: oklch(0.709 0.118 351.2 / 0.8);
-  --color-orange: oklch(0.721 0.122 42.4 / 0.8);
+  --color-pink: oklch(0.66 0.11 282 / 0.85);
+  --color-orange: oklch(0.66 0.09 232 / 0.85);
   --color-yellow: oklch(0.934 0.04 102);
   --color-green: oklch(0.765 0.088 143.7);
   --color-aqua: oklch(0.848 0.047 197.5);
@@ -226,6 +232,8 @@
   --text-color-subtle: var(--grey-5);
   --header-text-color: var(--grey-9);
   --border-color-muted: var(--grey-4);
+  /* 暗色模式强调色：提亮低饱和靛蓝，保证暗底可读且不刺眼 */
+  --primary-color: oklch(0.68 0.1 256);
   --surface-code: var(--grey-3);
   --surface-code-header: var(--grey-2);
   --surface-inline-code-border: oklch(0.43 0.018 274);
@@ -280,8 +288,10 @@
   --search-input-inset: inset 0 1px 0 oklch(1 0 0 / 0.3);
   --search-result-shadow: 0 0.75rem 1.5rem oklch(0.183 0.008 243.1 / 0.05);
   --search-result-shadow-hover: 0 1rem 2rem oklch(0.183 0.008 243.1 / 0.09);
-  --search-accent-shadow: 0 0.75rem 1.5rem oklch(0.593 0.209 13.9 / 0.12);
-  --search-accent-shadow-soft: 0 1rem 2rem oklch(0.593 0.209 13.9 / 0.08);
+  --search-accent-shadow: 0 0.75rem 1.5rem
+    color-mix(in oklch, var(--primary-color) 32%, transparent);
+  --search-accent-shadow-soft: 0 1rem 2rem
+    color-mix(in oklch, var(--primary-color) 22%, transparent);
 
   --line-hover-bg: oklch(1 0 0 / 0.1);
   --cb-line-highlight-bg: oklch(1 0 0 / 0.06);
@@ -299,7 +309,9 @@
   --cb-warning-border: oklch(0.77 0.17 35 / 0.7);
   --cb-highlighted-word-bg: oklch(0.93 0.131 60 / 0.18);
 
-  --nav-bg: linear-gradient(-225deg, var(--color-cyan-light) 0, var(--color-pink-light) 100%);
+  /* 导航栏底色：暗色磨砂玻璃（半透明深灰），替代原青粉渐变。
+     注意：灰阶在暗黑下被翻转，grey-9 实为近白，故此处改用 grey-1（深色）作玻璃底 */
+  --nav-bg: color-mix(in oklch, var(--grey-1) 62%, transparent);
 }
 
 :root[data-theme="dark"] .primary {

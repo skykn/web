@@ -1,6 +1,6 @@
 a:before,
 a:after {
-  transition: all 0.4s ease-in-out;
+  transition: all 0.25s ease;
 }
 
 body {
@@ -43,15 +43,9 @@ video {
 }
 
 hr {
-  background-image: repeating-linear-gradient(
-    -45deg,
-    var(--grey-3),
-    var(--grey-4) 0.25rem,
-    transparent 0.25rem,
-    transparent 0.5rem
-  );
+  background-image: linear-gradient(to right, transparent, var(--grey-4), transparent);
   border: none;
-  height: 0.125rem;
+  height: 1px;
   margin: 1.5rem 0;
 }
 blockquote {
@@ -144,4 +138,33 @@ main {
 
 .body.md {
   text-autospace: normal;
+}
+
+/* 点击特效：水墨涟漪（替换原 hyacine 彩虹烟花） */
+.ink-ripple {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 999999;
+  opacity: 0;
+  border: 1px solid color-mix(in oklch, oklch(0.42 0.008 260) 62%, transparent);
+  background: radial-gradient(
+    circle,
+    color-mix(in oklch, oklch(0.42 0.008 260) 26%, transparent) 0%,
+    transparent 68%
+  );
+  filter: blur(0.4px);
+  transform: scale(0.15);
+  animation: ink-ripple-anim 0.95s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+
+@keyframes ink-ripple-anim {
+  from {
+    transform: scale(0.15);
+    opacity: 0.8;
+  }
+  to {
+    transform: scale(4.6);
+    opacity: 0;
+  }
 }

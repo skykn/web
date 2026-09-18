@@ -256,6 +256,32 @@ import HyacineOutlet from "@hyacine/plugin-astro/components/HyacineOutlet.astro"
     </div>
     <FloatingToolbar client:idle hasNyxPlayer={true} />
     <HyacineOutlet name="layout-bottom" />
+
+    <script>
+      // 水墨涟漪点击特效（替换原 hyacine 彩虹烟花）
+      const clickFxReduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (!clickFxReduce) {
+        window.addEventListener("pointerdown", (e) => {
+          if (e.button !== 0) return;
+          const x = e.clientX;
+          const y = e.clientY;
+
+          // 多层同心圆错时扩散，模拟墨滴入水
+          for (let i = 0; i < 3; i++) {
+            const ripple = document.createElement("span");
+            ripple.className = "ink-ripple";
+            const size = 22 + i * 12;
+            ripple.style.width = `${size}px`;
+            ripple.style.height = `${size}px`;
+            ripple.style.left = `${x - size / 2}px`;
+            ripple.style.top = `${y - size / 2}px`;
+            ripple.style.animationDuration = `${0.95 + i * 0.18}s`;
+            document.body.appendChild(ripple);
+            ripple.addEventListener("animationend", () => ripple.remove());
+          }
+        });
+      }
+    </script>
   </body>
 </html>
 

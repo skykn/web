@@ -1,3 +1,6 @@
+import { readFileSync } from "node:fs";
+import { createRequire } from "node:module";
+
 import {
   defineConfig,
   presetAttributify,
@@ -6,6 +9,12 @@ import {
   transformerDirectives,
 } from "unocss";
 import themeConfig from "./src/theme.config";
+
+// Node ≥22 强制 JSON import attributes，@unocss/preset-icons 内部动态 import
+// icons.json 会触发 ERR_IMPORT_ATTRIBUTE_MISSING 且被静默吞掉，导致所有
+// i-ri-* 图标规则不生成（导航栏右侧"能点击但不显示"）。这里显式同步读文件绕过。
+const require = createRequire(import.meta.url);
+const riIconsPath = require.resolve("@iconify-json/ri/icons.json");
 
 function normalizeIconName(icon: string): string {
   return icon.startsWith("i-") ? icon : `i-ri-${icon}`;
@@ -55,13 +64,27 @@ const iconSafeList = [
   // 页面内固定使用的图标（避免后续模板改造期间被裁剪）
   "i-ri-flag-line",
   "i-ri-file-line",
+  // 导航栏右侧固定图标（SolidJS tsx 中渲染），防御性 safelist 确保生成
+  "i-ri-dice-line",
+  "i-ri-moon-line",
+  "i-ri-sun-line",
+  "i-ri-search-line",
   // 外链标识图标：由 wrapExternalLinks 在构建时动态注入 HTML，
   // UnoCSS 静态扫描源文件无法发现，需显式 safelist
   "i-ri-external-link-line",
 ].map(normalizeIconName);
 
 export default defineConfig({
-  presets: [presetWind4(), presetIcons(), presetAttributify()],
+  presets: [
+    presetWind4(),
+    presetIcons({
+      collections: {
+        // 同步读文件加载图标集合，绕过 Node JSON import attribute 限制（见顶部注释）
+        ri: () => JSON.parse(readFileSync(riIconsPath, "utf8")),
+      },
+    }),
+    presetAttributify(),
+  ],
   transformers: [transformerDirectives()],
   theme: {
     colors: {
