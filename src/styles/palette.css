@@ -57,6 +57,18 @@
   --surface-inline-code-border: oklch(0.892 0.01 15);
   --surface-inline-code-text: oklch(0.421 0.089 15.6);
 
+  /*
+   * 字体族（全站唯一权威来源，组件与页面一律通过 var() 引用）
+   * - 正文：跨平台系统无衬线栈，零加载、零闪烁，成熟沉稳；中文按苹方/雅黑/思源回落
+   * - 代码：内置 Maple Mono CN（vite-plugin-font 子集化注入），系统等宽字体兜底
+   */
+  --font-sans:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB",
+    "Microsoft YaHei", "Noto Sans SC", "Source Han Sans SC", "Helvetica Neue", Arial, sans-serif;
+  --font-mono:
+    "Maple Mono CN", "JetBrains Mono", "SF Mono", Menlo, Consolas, "Liberation Mono", "Courier New",
+    "Noto Sans Mono CJK SC", monospace;
+
   /* Layer tokens */
   --z-behind: -1;
   --z-base: 0;
